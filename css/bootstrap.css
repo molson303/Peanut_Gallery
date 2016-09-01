@@ -1,5 +1,18 @@
+.btn-letter-spacing{
+  letter-spacing:1.5px;
+
+}
 .btn-loc{
   margin-bottom: 1vh;
+}
+.title-style{
+  font-family: serif;
+}
+.sort-margin{
+  padding-left:10%;
+  font-size: 1.5em;
+  color: black;
+  font-family: serif;
 }
 .new-comment-color{
   background-color: darkgray;
@@ -13,6 +26,7 @@
 }
 .author{
   margin-left:10px;
+  font-family: serif;
 }
 .number-loc{
   margin-right: 5%;
