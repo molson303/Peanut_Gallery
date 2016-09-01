@@ -4,44 +4,34 @@ app.controller("ExercisesController", function($scope){
   $scope.newComment= {}
   $scope.counter.tracker = 0;
 
-  $scope.counterPos = function(post){
-    post.votes ++;
-    }
-  $scope.counterNeg = function(post){
-    post.votes --;
-    }
+$scope.counterPos = function(post){
+  post.votes ++;
+  }
+$scope.counterNeg = function(post){
+  post.votes --;
+  }
 
-  $scope.addInfo = function(post, submitForm) {
-        // post.date = moment().calendar();
-        // post.comments = [];
-        // post.commentsVisible = false;
-        // post.newCommentVisible = false;
-        $scope.posts.push(post);
-        post.votes = 0;
-        // $scope.view.newPostVisible = false;
-        $scope.info = {};
-        $scope.submitForm.$setUntouched();
-        $scope.post = {};
-        post.postDate = moment().subtract(0, 'days').subtract(0, 'hours').calendar();
-        submitForm.$setPristine();
-
-      }
-
-
-  $scope.showComments = function() {
-    this.allComments = !this.allComments;
-    }
-
-  $scope.formFunction = function(){
-    $scope.form = !$scope.form;
-    }
-    $scope.addComments = function(){
-      this.stuff = !this.stuff;
-    }
-  $scope.addComment = function(info){
-      info.comments.push ({name: $scope.newComment.name, comment: $scope.newComment.comment })
-      console.log($scope.posts.comments);
-    }
+$scope.addInfo = function(post, submitForm) {
+  $scope.posts.push(post);
+  post.votes = 0;
+  $scope.info = {};
+  $scope.submitForm.$setUntouched();
+  $scope.post = {};
+  post.postDate = moment().subtract(0, 'days').subtract(0, 'hours').calendar();
+  submitForm.$setPristine();
+  }
+$scope.showComments = function() {
+  this.allComments = !this.allComments;
+  }
+$scope.formFunction = function(){
+  $scope.form = !$scope.form;
+  }
+$scope.addComments = function(){
+  this.stuff = !this.stuff;
+  }
+$scope.addComment = function(info){
+  info.comments.push ({name: $scope.newComment.name, comment: $scope.newComment.comment })
+  }
 
 
 
