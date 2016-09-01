@@ -1,4 +1,9 @@
-
+.btn-loc{
+  margin-bottom: 1vh;
+}
+.new-comment-color{
+  background-color: darkgray;
+}
 .text-dec{
   border: 1px solid black;
   background-color: lightgray;
@@ -9,11 +14,10 @@
 .author{
   margin-left:10px;
 }
-.nav-color{
-  background-color: black;
-
+.number-loc{
+  margin-right: 5%;
+  font-size: 2em;
 }
-
 .post-date{
   display: inline-block;
   margin-left: 10px;
