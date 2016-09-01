@@ -106,14 +106,14 @@
           </div>
         <div class="row">
           <div class="col-md-6">
-            <h4 class="author">Author: {{post.author}}</h4>
+            <h4 class="author-main">Author: {{post.author}}</h4>
           </div>
         </div>
         <div class="row">
           <div class="col-md-8">
-            <p class="post-date"><span class="glyphicon glyphicon-calendar"></span>{{ post.postDate }}</p>
+            <p class="post-date"><span class="glyphicon glyphicon-calendar calandar-section"></span>{{ post.postDate }}</p>
             |
-            <p ng-click="showComments()" class="comment-section">{{ post.comments.length }}<span class="glyphicon glyphicon-comment"></span>Comments</p>
+            <p ng-click="showComments()" class="comment-section"> {{ post.comments.length }} <span class="glyphicon glyphicon-comment"></span> Comments</p>
             |
             <p ng-click="addComments()" class="add-comment"><span class="glyphicon glyphicon-pencil"></span> Add Comment</p>
             </div>

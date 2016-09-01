@@ -33,11 +33,20 @@
 .author{
   margin-left:10px;
   font-family: serif;
+  color: black;
+}
+.author-main{
+  margin-left:10px;
+  font-family: serif;
+  color: black;
+  letter-spacing: 1px
 }
 .post-description{
   margin-left:10px;
   font-family: serif;
   font-size:1.5em;
+  letter-spacing:1px;
+  color: black;
 }
 
 .number-loc{
@@ -47,13 +56,22 @@
 .post-date{
   display: inline-block;
   margin-left: 10px;
+  letter-spacing: .5px;
+  color: black;
 }
 .comment-section{
   display: inline-block;
+  letter-spacing: .5px;
+  color: black;
+}
+.calandar-section{
+  letter-spacing: .5px;
+  color: black;
 }
 .add-comment{
   display: inline-block;
-
+  letter-spacing: .5px;
+  color: black;
 }
 .fa-arrow-up{
   font-size: 2em;
