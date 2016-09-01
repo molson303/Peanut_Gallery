@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html ng-app="firstApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://use.fontawesome.com/26de7c1914.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-animate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <title>Reddit Clone</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+  </head>
+<div  ng-controller="ExercisesController">
+  <div class="container">
+    <div class="col-md-12">
+      <form class="navbar-form navbar-left nav-style" role="search">
+        <div class="form-group">
+          <input type="text" ng-model="searchText.title" class="form-control" placeholder="Search">
+        </div>
+        <button ng-click='formFunction()'  data-toggle="modal" type="submit" class="btn btn-default">Submit Post +</button>
+        <select class="select-location" ng-model="taco" >
+          <option>date</option>
+          <option>title</option>
+          <option>vote</option>
+        </select>
+      </form>
+    </div>
+</div>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1>Reddit Clone</h1>
+        </div>
+      </div>
+    </div>
+<!-- THIS IS FOR THE FORM -->
+    <div ng-show="form">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+        <h3 class="modal-title">To create a new post please fill out the following</h3>
+      <div class="modal-body">
+        <form name="submitForm" role="form" ng-submit="addInfo(info, submitForm)" novalidate >
+          <!-- <div data-ng-show="progress.active()" style="color: red; font-size: 50px;">Sending…</div> -->
+          <div class="form-group" ng-class="{ 'has-error' : submitForm.title.$invalid && !submitForm.title.$pristine, 'has-success':submitForm.title.$valid}">
+            <label for="title">Title</label>
+            <input type="text" name="title" ng-model="info.title" class="form-control" required />
+            <p ng-show="submitForm.title.$invalid && !submitForm.title.$pristine" class="help-block">The title is required.</p>
+          </div>
+          <div class="form-group" ng-class="{ 'has-error' : submitForm.author.$invalid && !submitForm.author.$pristine, 'has-success':submitForm.author.$valid}">
+            <label for="author">Author</label>
+            <input type="text" name="author" ng-model="info.author" class="form-control" required />
+            <p ng-show="submitForm.author.$invalid && !submitForm.author.$pristine" class="help-block">The author is required.</p>
+          </div>
+          <div class="form-group" ng-class="{ 'has-error' : submitForm.image.$invalid && !submitForm.image.$pristine, 'has-success':submitForm.image.$valid}">
+            <label for="image">Image</label>
+            <input type="text" name="image" ng-model="info.image" class="form-control" required />
+            <p ng-show="submitForm.image.$invalid && !submitForm.image.$pristine" class="help-block">The image is required.</p>
+          </div>
+          <div class="form-group" ng-class="{ 'has-error' : submitForm.description.$invalid && !submitForm.description.$pristine, 'has-success':submitForm.description.$valid  }">
+            <label for="description">Description</label>
+            <input type="text" name="description" ng-model="info.description" class="form-control" required />
+            <p ng-show="submitForm.description.$invalid && !submitForm.description.$pristine" class="help-block">The description is required.</p>
+          </div>
+          <div class="footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" ng-disabled="submitForm.$invalid" class="btn btn-default">Submit</button>
+          </form>
+          </div>
+        </div>
+    </form>
+  </div>
+  <div ng-repeat="post in posts | filter:searchText | orderBy:'-votes' | orderBy:taco ">
+    <div class="container margin">
+        <div class="text-dec">
+          <div class="row">
+            <div class="col-md-6">
+              <h2 class="author" >{{post.title}}</h2>
+            </div>
+            <div class="col-md-6 text-right">
+              <h4 ng-class='{highlightG: post.votes >= 1, highlightR: post.votes <=-1}'>{{post.votes}}</h4>
+              <i ng-click="counterPos(post)" class="fa fa-arrow-up"></i>
+              <i ng-click="counterNeg(post)" class="fa fa-arrow-down"></i>
+            </div>
+          </div>
+      <div class="row">
+      <div class="col-md-4">
+        <img class="author" src="{{post.image}}" alt="" />
+      </div>
+      <div class="col-md-8">
+        <h4>{{post.description}}</h4>
+      </div>
+    </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="author">Author: {{post.author}}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <p class="post-date"><span class="glyphicon glyphicon-calendar"></span>{{ post.postDate }}</p>
+            |
+            <p ng-click="showComments()" class="comment-section">{{ post.comments.length }}<span class="glyphicon glyphicon-comment"></span>Comments</p>
+            |
+            <p ng-click="addComments()" class="add-comment"><span class="glyphicon glyphicon-pencil"></span> Add Comment</p>
+            </div>
+          </div>
+<!-- THIS IS FOR THE COMMENTS -->
+
+        <div class="well well-sm" ng-show="allComments">
+          <div ng-repeat= "comment in post.comments">
+            <h5>Name: {{comment.name}}</h5>
+            <h5>Comments: {{comment.comment}}</h5>
+
+          </div>
+      </div>
+
+<form form name="submitComment" role="form" ng-submit="addComment(post)" novalidate>
+<div ng-show="stuff">
+    <h3>New Comment</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group" ng-class="{ 'has-error' : submitComment.name.$invalid && !submitComment.name.$pristine, 'has-success':submitComment.name.$valid}">
+        <label for="name">Name</label>
+        <input type="text" name="name" placeholder="name" ng-model="newComment.name" class="form-control" required />
+        <p ng-show="submitComment.name.$invalid && !submitComment.name.$pristine" class="help-block">Your name is required.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+  <div class="col-md-6">
+      <div class="form-group" ng-class="{ 'has-error' : submitComment.comment.$invalid && !submitComment.comment.$pristine, 'has-success':submitComment.comment.$valid}">
+      <label for="comment">Comment</label>
+      <input type="text" name="comment" placeholder="Comment" ng-model="newComment.comment" class="form-control" required />
+      <p ng-show="submitComment.comment.$invalid && !submitComment.comment.$pristine" class="help-block">The comment is required.</p>
+      </div>
+      <button type="submit" ng-disabled="submitComment.$invalid" class="btn btn-default">Submit</button>
+
+  </div>
+  </div>
+</div>
+</div>
+</form>
+
+</div>
+</div>
+</div>
+
+
+
+
+    <script src="app.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+</div>
+</html>
