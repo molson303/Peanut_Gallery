@@ -32,7 +32,9 @@ $scope.addComments = function(){
 $scope.addComment = function(info){
   info.comments.push ({name: $scope.newComment.name, comment: $scope.newComment.comment })
   }
-
+$scope.closeModel = function(){
+  $scope.form = !$scope.form
+}
 
 
   $scope.posts =

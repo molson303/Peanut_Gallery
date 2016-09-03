@@ -5258,12 +5258,16 @@ button.close {
   margin-top: -2px;
 }
 .modal-title {
+  color: #fff;
   margin: 0;
-  line-height: 1.42857143;
+  /*line-height: 1.42857143;*/
+  font-family: serif;
+  letter-spacing: 1.2px;
 }
 .modal-body {
   position: relative;
   padding: 15px;
+  background-color: #A8A7A7;
 }
 .modal-footer {
   padding: 15px;
