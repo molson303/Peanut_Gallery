@@ -27,7 +27,7 @@ $scope.formFunction = function(){
   $scope.form = !$scope.form;
   }
 $scope.addComments = function(){
-  this.stuff = !this.stuff;
+  $scope.comments = !$scope.comments;
   }
 $scope.addComment = function(info){
   info.comments.push ({name: $scope.newComment.name, comment: $scope.newComment.comment })
@@ -35,7 +35,12 @@ $scope.addComment = function(info){
 $scope.closeModel = function(){
   $scope.form = !$scope.form
 }
+$scope.closeNewComment = function(){
+  $scope.comments = !$scope.comments;
+  this.allComments = !this.allComments;
 
+
+}
 
   $scope.posts =
     [

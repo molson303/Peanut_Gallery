@@ -124,8 +124,8 @@
             <h5>Comments: {{comment.comment}}</h5>
           </div>
         </div>
-        <form form name="submitComment" role="form" ng-submit="addComment(post)" novalidate>
-          <div ng-show="stuff">
+        <form name="submitComment" role="form" ng-submit="addComment(post)" novalidate>
+          <div ng-show="comments">
             <h3>New Comment</h3>
           <div class="well well-lg">
             <div class="row">
@@ -145,7 +145,7 @@
                 <p ng-show="submitComment.comment.$invalid && !submitComment.comment.$pristine" class="help-block">The comment is required.</p>
               </div>
               <div class="btn-loc">
-                <button type="submit" ng-disabled="submitComment.$invalid" class="btn btn-default btn-info btn-letter-spacing">Submit</button>
+                <button type="submit" ng-disabled="submitComment.$invalid" ng-click='closeNewComment()'class="btn btn-default btn-info btn-letter-spacing">Submit</button>
               </div>
             </div>
           </div>
