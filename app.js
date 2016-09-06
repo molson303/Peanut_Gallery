@@ -15,10 +15,10 @@ $scope.addInfo = function(post, submitForm) {
   $scope.posts.push(post);
   post.votes = 0;
   $scope.info = {};
-  $scope.submitForm.$setUntouched();
+  // $scope.submitForm.$setUntouched();
   $scope.post = {};
   post.postDate = moment().subtract(0, 'days').subtract(0, 'hours').calendar();
-  submitForm.$setPristine();
+  $scope.submitForm.$setPristine();
   }
 $scope.showComments = function() {
   this.allComments = !this.allComments;
@@ -29,8 +29,12 @@ $scope.formFunction = function(){
 $scope.addComments = function(){
   $scope.comments = !$scope.comments;
   }
-$scope.addComment = function(info){
+$scope.addComment = function(info, submitComment){
   info.comments.push ({name: $scope.newComment.name, comment: $scope.newComment.comment })
+  $scope.submitComment.$setUntouched();
+  // $scope.post = {};
+  // post.postDate = moment().subtract(0, 'days').subtract(0, 'hours').calendar();
+  $scope.submitComment.$setPristine();
   }
 $scope.closeModel = function(){
   $scope.form = !$scope.form

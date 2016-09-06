@@ -122,9 +122,10 @@
           <div ng-repeat= "comment in post.comments">
             <h5>Name: {{comment.name}}</h5>
             <h5>Comments: {{comment.comment}}</h5>
+            <hr>
           </div>
         </div>
-        <form name="submitComment" role="form" ng-submit="addComment(post)" novalidate>
+        <form name="submitComment" role="form" ng-submit="addComment(post, submitForm)" novalidate>
           <div ng-show="comments">
             <h3>New Comment</h3>
           <div class="well well-lg">
